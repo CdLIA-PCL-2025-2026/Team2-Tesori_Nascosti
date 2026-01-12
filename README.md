@@ -16,7 +16,7 @@ Struttura principale del progetto
   Interfaccia e logica del gioco. Gestisce round, turni, griglia 6×6, azioni, carte speciali, punteggi e fine partita
 
 - Carta.py  
-  Modello della carta, sia numerica sia speciale. Gestisce stato coperta e rivelata permanente e associazione al giocatore
+  Modello della carta, sia numerica sia speciale. Gestisce stato coperta e rivelata permanente
 
 - Mazzo.py  
   Creazione del mazzo, mescolamento ed estrazione delle 36 carte per la griglia
@@ -237,9 +237,6 @@ La logica è implementata in `GestoreClassifica`.
 
 Ogni `Carta` mantiene lo stato coperta o scoperta e un flag di rivelazione permanente usato dalla Pergamena.
 
-### Associazione delle carte ai giocatori
-
-Le carte accettate vengono aggiunte alla mano del giocatore e associate al giocatore chiamando un metodo dedicato nella carta.
 
 ### Valutazione della mano e complessità
 
