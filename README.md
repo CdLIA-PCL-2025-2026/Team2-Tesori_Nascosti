@@ -13,33 +13,33 @@ Struttura principale del progetto
   Punto di ingresso del progetto. Mostra il menu principale, avvia una nuova partita e consente l’accesso alla classifica
 
 - tesori_nascosti_gui.py  
-  Interfaccia e logica del gioco. Gestisce round, turni, griglia 6×6, azioni, carte speciali, punteggi e fine partita :contentReference[oaicite:0]{index=0}
+  Interfaccia e logica del gioco. Gestisce round, turni, griglia 6×6, azioni, carte speciali, punteggi e fine partita
 
 - Carta.py  
-  Modello della carta, sia numerica sia speciale. Gestisce stato coperta e rivelata permanente e associazione al giocatore :contentReference[oaicite:1]{index=1}
+  Modello della carta, sia numerica sia speciale. Gestisce stato coperta e rivelata permanente e associazione al giocatore
 
 - Mazzo.py  
-  Creazione del mazzo, mescolamento ed estrazione delle 36 carte per la griglia :contentReference[oaicite:2]{index=2}
+  Creazione del mazzo, mescolamento ed estrazione delle 36 carte per la griglia
 
 - Giocatore.py  
-  Modello del giocatore. Gestisce mano, punti azione, punteggi e stato di conclusione del round :contentReference[oaicite:3]{index=3}
+  Modello del giocatore. Gestisce mano, punti azione, punteggi e stato di conclusione del round
 
 - validator.py  
-  Valutazione delle combinazioni della mano e calcolo del punteggio del round. Gestisce anche la Gemma come jolly per gruppi :contentReference[oaicite:4]{index=4}
+  Valutazione delle combinazioni della mano e calcolo del punteggio del round. Gestisce anche la Gemma come jolly per gruppi
 
 - GestoreClassifica.py  
-  Salvataggio delle partite su file di testo e ricostruzione della classifica con statistiche aggregate :contentReference[oaicite:5]{index=5}
+  Salvataggio delle partite su file di testo e ricostruzione della classifica con statistiche aggregate
 
 Cartelle e file di supporto
 
 - Immagini_mazzo  
-  Contiene le immagini delle carte e degli sfondi usati dalla GUI. Il gioco carica le immagini da questa cartella per retro, carte numeriche e carte speciali :contentReference[oaicite:6]{index=6}
+  Contiene le immagini delle carte e degli sfondi usati dalla GUI. Il gioco carica le immagini da questa cartella per retro, carte numeriche e carte speciali
 
 - Audio  
-  Contiene il file mp3 della musica di sottofondo riprodotta in loop nel menu principale :contentReference[oaicite:7]{index=7}
+  Contiene il file mp3 della musica di sottofondo riprodotta in loop nel menu principale
 
 - classifica.txt  
-  Viene creato automaticamente se non esiste. Contiene lo storico delle partite in formato testuale :contentReference[oaicite:8]{index=8}
+  Viene creato automaticamente se non esiste. Contiene lo storico delle partite in formato testuale
 
 ## Requisiti
 
@@ -55,7 +55,7 @@ Librerie utilizzate
 - pygame
 
 Nota su pillow e pygame  
-Pillow è usata per caricare e ridimensionare le immagini. Pygame viene usata per la riproduzione della musica nel menu principale :contentReference[oaicite:9]{index=9}
+Pillow è usata per caricare e ridimensionare le immagini. Pygame viene usata per la riproduzione della musica nel menu principale
 
 ## Installazione
 
