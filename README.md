@@ -10,7 +10,7 @@ Autori del progetto: Riccardo Sciabbarrasi, Andrea Barilà, Marco Oliveri
 Struttura principale del progetto
 
 - main.py  
-  Punto di ingresso del progetto. Mostra il menu principale, avvia una nuova partita e consente l’accesso alla classifica
+  Punto di ingresso del progetto. Mostra il menu principale, avvia una nuova partita e contiene la classe per la pagina classifica
 
 - tesori_nascosti_gui.py  
   Interfaccia e logica del gioco. Gestisce round, turni, griglia 6×6, azioni, carte speciali, punteggi e fine partita
@@ -77,7 +77,7 @@ Per avviare il gioco eseguire:
 python main.py
 ```
 
-All’avvio viene mostrato il menu principale, dal quale è possibile iniziare una nuova partita o accedere alla classifica.
+All’avvio viene mostrato il menu principale.
 
 ## Regole del gioco
 
