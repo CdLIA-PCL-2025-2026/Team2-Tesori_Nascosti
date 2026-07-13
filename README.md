@@ -1,279 +1,285 @@
 # Tesori Nascosti
 
-Tesori Nascosti è un gioco sviluppato in Python con interfaccia grafica realizzata tramite breezypythongui.  
-Il gioco è per due giocatori e si svolge su una griglia 6×6 di carte coperte. Ogni giocatore deve costruire una mano di 5 carte gestendo i propri punti azione e sfruttando le carte speciali per ottenere vantaggi strategici.
+Tesori Nascosti is a game developed in Python with a graphical user interface implemented using breezypythongui.  
+The game is for two players and is played on a 6×6 grid of facedown cards. Each player must build a hand of 5 cards by managing their action points and using special cards to gain strategic advantages.
 
-Autori del progetto: Riccardo Sciabbarrasi, Andrea Barilà, Marco Oliveri
+Project Authors: Riccardo Sciabbarrasi, Andrea Barilà, Marco Oliveri
 
-## Contenuto del repository
+## Installation
 
-Struttura principale del progetto
+Clone the repository, navigate to the project directory, and install the dependencies:
+
+```bash
+pip install pillow pygame
+```
+
+or
+
+```bash
+uv add pillow pygame
+```
+
+## Repository Contents
+
+Main structure of the project:
 
 - main.py  
-  Punto di ingresso del progetto. Mostra il menu principale, avvia una nuova partita e contiene la classe per la pagina classifica
+  Entry point of the project. Displays the main menu, starts a new game, and contains the leaderboard page class.
 
 - tesori_nascosti_gui.py  
-  Interfaccia e logica del gioco. Gestisce round, turni, griglia 6×6, azioni, carte speciali, punteggi e fine partita
+  Interface and game logic. Manages rounds, turns, the 6×6 grid, actions, special cards, scores, and the end of the game.
 
 - Carta.py  
-  Modello della carta, sia numerica sia speciale. Gestisce stato coperta e rivelata permanente
+  Card model, both numeric and special. Manages face-down and permanently revealed states.
 
 - Mazzo.py  
-  Creazione del mazzo, mescolamento ed estrazione delle 36 carte per la griglia
+  Deck creation, shuffling, and drawing of the 36 cards for the grid.
 
 - Giocatore.py  
-  Modello del giocatore. Gestisce mano, punti azione, punteggi e stato di conclusione del round
+  Player model. Manages the hand, action points, scores, and the end-of-round state.
 
 - validator.py  
-  Valutazione delle combinazioni della mano e calcolo del punteggio del round. Gestisce anche la Gemma come jolly per gruppi
+  Evaluation of hand combinations and calculation of the round score. Also handles the Gem (Gemma) card as a wild card for groups.
 
 - GestoreClassifica.py  
-  Salvataggio delle partite su file di testo e ricostruzione della classifica con statistiche aggregate
+  Saves games to a text file and reconstructs the leaderboard with aggregated statistics.
 
-Cartelle e file di supporto
+Support folders and files:
 
 - Immagini_mazzo  
-  Contiene le immagini delle carte e degli sfondi usati dalla GUI. Il gioco carica le immagini da questa cartella per retro, carte numeriche e carte speciali
+  Contains deck images and backgrounds used by the GUI. The game loads images from this folder for the card back, numeric cards, and special cards.
 
 - Audio  
-  Contiene il file mp3 della musica di sottofondo riprodotta in loop nel menu principale
+  Contains the mp3 file for the background music played on loop in the main menu.
 
 - classifica.txt  
-  Viene creato automaticamente se non esiste. Contiene lo storico delle partite in formato testuale
+  Automatically created if it does not exist. Contains the history of games in text format.
 
-## Requisiti
+## Requirements
 
-Versione consigliata
+Recommended Version:
 
-- Python 3.10 o superiore
+- Python 3.10 or higher
 
-Librerie utilizzate
+Libraries used:
 
 - breezypythongui
 - tkinter
 - pillow
 - pygame
 
-Nota su pillow e pygame  
-Pillow è usata per caricare e ridimensionare le immagini. Pygame viene usata per la riproduzione della musica nel menu principale
+Note on pillow and pygame:  
+Pillow is used to load and resize images. Pygame is used to play the music in the main menu.
 
-## Installazione
 
-Clona il repository e posizionati nella cartella del progetto, poi installa le dipendenze
+## Dependencies
 
-```bash
-pip install pillow pygame
-```
+breezypythongui is included in the project or must be made available in the Python Path depending on the repository configuration.
 
-## Dipendenze
+## How to Run
 
-breezypythongui è incluso nel progetto oppure deve essere reso disponibile nel Python Path in base alla configurazione del repository.
-
-## Avvio
-
-Per avviare il gioco eseguire:
+To start the game, run:
 
 ```bash
 python main.py
 ```
 
-All’avvio viene mostrato il menu principale.
+Upon startup, the main menu will be shown.
 
-## Regole del gioco
+## Game Rules
 
-### Panoramica
+### Overview
 
-- Il gioco si svolge su una griglia 6×6 composta da 36 carte coperte  
-- Le carte vengono estratte da un mazzo e disposte coperte all’inizio di ogni round  
-- Ogni round assegna 15 punti azione a ciascun giocatore  
-- I giocatori si alternano nel rivelare una carta e scegliere un’azione tra Accetta, Rifiuta, Cambia  
-- Ogni giocatore deve costruire una mano di 5 carte  
-- I punteggi dei round si sommano e la partita termina quando un giocatore raggiunge almeno 110 punti  
+- The game is played on a 6×6 grid consisting of 36 facedown cards.  
+- Cards are drawn from a deck and laid face down at the beginning of each round.  
+- Each round allocates 15 action points to each player.  
+- Players take turns revealing a card and choosing an action: Accept, Reject, or Swap.  
+- Each player must build a 5-card hand.  
+- Round scores accumulate, and the game ends when a player reaches at least 110 points.  
 
-### Carte numeriche
+### Numeric Cards
 
-- **Semi**: Picche, Cuori, Quadri, Fiori  
-- **Valori numerici**: da 1 a 10  
+- **Suits**: Spades, Hearts, Diamonds, Clubs (Picche, Cuori, Quadri, Fiori)  
+- **Numeric values**: from 1 to 10  
 
-Nel modello sono presenti anche valori oltre il 10 per la rappresentazione testuale, ma la logica di punteggio si concentra sulle carte numeriche utili alle combinazioni.
+In the model, there are also values beyond 10 for text representation, but the scoring logic focus is on numeric cards useful for combinations.
 
-### Carte speciali
+### Special Cards
 
-#### Gemma
+#### Gem (Gemma)
 
-Funziona come jolly solo per combinazioni basate su valori uguali, quindi coppia, doppia coppia, tris, full e poker.  
-Non può completare scala, colore o scala reale.  
-La logica è gestita in `validator`.
+Acts as a wild card (jolly) only for combinations based on matching values: Pair, Two Pair, Three of a Kind, Full House, and Four of a Kind.  
+It cannot complete a Straight, Flush, or Straight Flush.  
+This logic is handled in `validator`.
 
-#### Moneta
+#### Coin (Moneta)
 
-Quando viene accettata, assegna immediatamente un punto azione extra al giocatore.  
-La gestione è implementata in `tesori_nascosti_gui`.
+When accepted, it immediately awards an extra action point to the player.  
+This logic is implemented in `tesori_nascosti_gui`.
 
-#### Pergamena
+#### Scroll (Pergamena)
 
-Quando viene accettata, permette di rivelare permanentemente una carta coperta della griglia.  
-La carta resta visibile per il resto del round e non viene assegnata automaticamente.  
-La gestione è implementata in `tesori_nascosti_gui`.
+When accepted, it allows revealing one facedown card in the grid permanently.  
+The card remains visible for the rest of the round and is not automatically assigned to anyone.  
+This logic is implemented in `tesori_nascosti_gui`.
 
-## Azioni del turno
+## Turn Actions
 
-Durante il proprio turno un giocatore seleziona una carta coperta nella griglia per rivelarla e poi sceglie una delle azioni disponibili.
+During their turn, a player selects a facedown card on the grid to reveal it, and then chooses one of the available actions:
 
-### Accetta
+### Accept (Accetta)
 
-- **Costo**: 1 punto azione  
-- **Effetto**: aggiunge la carta alla mano se la mano non è già completa  
-- Implementazione in `tesori_nascosti_gui`
+- **Cost**: 1 action point  
+- **Effect**: adds the card to the hand if the hand is not already full  
+- Implementation in `tesori_nascosti_gui`
 
-### Rifiuta
+### Reject (Rifiuta)
 
-- **Costo**: 1 punto azione  
-- **Effetto**: la carta torna coperta e non viene assegnata a nessuno  
-- Implementazione in `tesori_nascosti_gui`
+- **Cost**: 1 action point  
+- **Effect**: the card is turned face down again and is not assigned to anyone  
+- Implementation in `tesori_nascosti_gui`
 
-### Cambia
+### Swap (Cambia)
 
-- **Costo**: 2 punti azione  
-- **Effetto**: scambia la carta rivelata con una carta già presente nella mano, scegliendo quale carta sostituire  
-- Implementazione in `tesori_nascosti_gui`
+- **Cost**: 2 action points  
+- **Effect**: swaps the revealed card with a card already in the hand, choosing which card to replace  
+- Implementation in `tesori_nascosti_gui`
 
-### Concludi
+### End Round (Concludi)
 
-- Disponibile solo quando la mano è completa  
-- Permette al giocatore di terminare la propria partecipazione al round conservando i punti azione residui  
-- Implementazione in `tesori_nascosti_gui`
+- Available only when the hand is full (5 cards)  
+- Allows the player to end their participation in the round, keeping any remaining action points  
+- Implementation in `tesori_nascosti_gui`
 
-## Fine del round
+## End of Round
 
-Il round termina quando entrambi i giocatori hanno concluso oppure quando entrambi hanno terminato i punti azione.  
-A fine round vengono valutate le mani e al punteggio della combinazione si sommano i punti azione residui del giocatore.
+The round ends when both players have finished (called "Concludi") or when both have run out of action points.  
+At the end of the round, hands are evaluated and any remaining action points are added to the combination score.
 
-## Combinazioni e punteggi
+## Combinations and Scores
 
-Le combinazioni assegnano un punteggio fisso e il punteggio finale del round è:
+Combinations award a fixed score, and the final round score is:
 
-`punteggio round = punteggio combinazione + punti azione residui`
+`round score = combination score + remaining action points`
 
-### Valori delle combinazioni
+### Combination Values
 
-- **Scala reale**: 100  
-- **Poker**: 50  
-- **Full**: 30  
-- **Colore**: 25  
-- **Scala**: 20  
-- **Tris**: 15  
-- **Doppia coppia**: 10  
-- **Coppia**: 5  
-- **Nessuna combinazione**: 0  
+- **Straight Flush (Scala reale)**: 100  
+- **Four of a Kind (Poker)**: 50  
+- **Full House (Full)**: 30  
+- **Flush (Colore)**: 25  
+- **Straight (Scala)**: 20  
+- **Three of a Kind (Tris)**: 15  
+- **Two Pair (Doppia coppia)**: 10  
+- **Pair (Coppia)**: 5  
+- **No combination (Nessuna combinazione)**: 0  
 
-La logica di valutazione è implementata in `validator`.
+The evaluation logic is implemented in `validator`.
 
-## Fine della partita
+## End of the Game
 
-La partita termina quando almeno un giocatore raggiunge 110 punti o più.  
-Se entrambi raggiungono la soglia nello stesso round, vince chi ha il punteggio maggiore.  
-In caso di ulteriore parità vince chi ha più punti azione residui.  
-Se permane la parità la partita termina in pareggio.  
+The game ends when at least one player reaches 110 points or more.  
+If both reach the threshold in the same round, the player with the higher score wins.  
+If there is still a tie, the player with more remaining action points wins.  
+If it is still a tie, the game ends in a draw.  
 
-La gestione è implementata in `tesori_nascosti_gui`.
+The game-end logic is implemented in `tesori_nascosti_gui`.
 
-## Interfaccia di gioco
+## Game Interface
 
-### Griglia 6×6
+### 6×6 Grid
 
-- Ogni carta in griglia è rappresentata da un pulsante con immagine  
-- Una carta assegnata a un giocatore viene evidenziata con colore diverso e diventa non selezionabile dagli altri  
+- Each card on the grid is represented by a button with an image.  
+- A card assigned to a player is highlighted in a different color and cannot be selected by the other player.  
 
-Implementazione in `tesori_nascosti_gui`.
+Implementation in `tesori_nascosti_gui`.
 
-### Pannello informazioni
+### Info Panel
 
-Mostra in tempo reale:
+Displays in real-time:
 
-- giocatore di turno  
-- punti azione rimanenti  
-- punteggio attuale  
-- numero carte in mano  
-- round corrente  
+- current player's turn  
+- remaining action points  
+- current score  
+- number of cards in hand  
+- current round  
 - timer  
 
-Implementazione in `tesori_nascosti_gui`.
+Implementation in `tesori_nascosti_gui`.
 
 ### Timer
 
-Il timer mostra i secondi trascorsi e viene aggiornato periodicamente durante la partita.  
-Implementazione in `tesori_nascosti_gui`.
+The timer shows the elapsed seconds and is updated periodically during the game.  
+Implementation in `tesori_nascosti_gui`.
 
 ### Menu
 
-Il gioco include un menu in alto con opzioni per:
+The game includes a top menu with options to:
 
-- nuova partita  
-- apertura classifica  
+- start a new game  
+- open the leaderboard  
 
-Implementazione in `tesori_nascosti_gui`.
+Implementation in `tesori_nascosti_gui`.
 
-## Classifica
+## Leaderboard
 
-### Persistenza su file
+### File Persistence
 
-Le partite vengono salvate su file di testo in append.  
-Ogni riga contiene i campi separati da un carattere separatore e include data, durata, round, nomi, punteggi, punti azione finali e vincitore.
+Games are saved in append mode to a text file.  
+Each line contains fields separated by a delimiter, including date, duration, rounds, names, scores, final action points, and winner.
 
-### Visualizzazione
+### Visualization
 
-La schermata classifica legge il file, calcola statistiche aggregate e mostra:
+The leaderboard screen reads the file, calculates aggregated statistics, and displays:
 
-- classifica ordinata  
-- partite totali  
-- ultime partite  
+- sorted leaderboard  
+- total games played  
+- recent games  
 
-La logica è implementata in `GestoreClassifica`.
+Implementation in `GestoreClassifica`.
 
-## Dettagli implementativi rilevanti
+## Relevant Implementation Details
 
-### Gestione dello stato delle carte
+### Card State Management
 
-Ogni `Carta` mantiene lo stato coperta o scoperta e un flag di rivelazione permanente usato dalla Pergamena.
+Each `Carta` (Card) maintains a face-up/face-down state and a permanent revelation flag used by the Scroll.
 
+### Hand Evaluation and Complexity
 
-### Valutazione della mano e complessità
+- The hand is limited to at most 5 cards, so combination checks have a constant cost with respect to the hand size.  
+- Value frequency management uses `Counter` and performs operations on very small sets.  
 
-- La mano è al massimo di 5 carte, quindi i controlli di combinazione hanno costo costante rispetto alla dimensione della mano  
-- La gestione delle frequenze dei valori usa `Counter` ed esegue operazioni su insiemi molto piccoli  
+Implementation in `validator`.
 
-Implementazione in `validator`.
+### Leaderboard Saving
 
-### Salvataggio della classifica
+- If the leaderboard file does not exist, it is created automatically.  
+- Reading reconstructs `Partita` (Game) objects and aggregates statistics by player name.  
 
-- Se il file non esiste viene creato automaticamente  
-- La lettura ricostruisce oggetti `Partita` e aggrega le statistiche per nome  
+Implementation in `GestoreClassifica`.
 
-Implementazione in `GestoreClassifica`.
+## Graphical and Audio Resources
 
-## Risorse grafiche e audio
+### Images
 
-### Immagini
+The game uses images for:
 
-Il gioco utilizza immagini per:
+- card back  
+- numeric cards named using a value-suit convention  
+- special cards with lowercase names  
 
-- retro carta  
-- carte numeriche nominate con convenzione valore e seme  
-- carte speciali con nome in minuscolo  
-
-La GUI carica e ridimensiona le immagini a runtime.  
-Implementazione in `tesori_nascosti_gui`.
+The GUI loads and resizes images at runtime.  
+Implementation in `tesori_nascosti_gui`.
 
 ### Audio
 
-Nel menu principale viene avviata musica di sottofondo in loop con volume ridotto.  
-Implementazione in `main.py`.
+In the main menu, background music starts playing in a loop at a reduced volume.  
+Implementation in `main.py`.
 
 ## Credits
 
-### Autori
+### Authors
 
 - Riccardo Sciabbarrasi  
 - Andrea Barilà  
-- Marco Oliveri  
+- Marco Oliveri
