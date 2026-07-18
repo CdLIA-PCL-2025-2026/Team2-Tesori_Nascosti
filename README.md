@@ -1,5 +1,5 @@
 # Tesori Nascosti
-
+ 
 Tesori Nascosti is a game developed in Python with a graphical user interface implemented using breezypythongui.  
 The game is for two players and is played on a 6×6 grid of facedown cards. Each player must build a hand of 5 cards by managing their action points and using special cards to gain strategic advantages.
 
